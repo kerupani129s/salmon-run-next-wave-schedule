@@ -53,7 +53,7 @@
 
 		if (
 			weapon.image.url
-			.endsWith('/9d7272733ae2f2282938da17d69f13419a935eef42239132a02fcf37d8678f10_0.png')
+			.endsWith('/ui_img/9d7272733ae2f2282938da17d69f13419a935eef42239132a02fcf37d8678f10_0.png')
 		) {
 			return 'クマサン印のランダム';
 		} else {
