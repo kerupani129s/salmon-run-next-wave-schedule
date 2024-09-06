@@ -48,6 +48,21 @@
 
 	const dateToString = date => dtf.format(date);
 
+	// 
+	const getWeaponName = weapon => {
+
+		if (
+			weapon.image.url
+			.endsWith('/9d7272733ae2f2282938da17d69f13419a935eef42239132a02fcf37d8678f10_0.png')
+		) {
+			return 'クマサン印のランダム';
+		} else {
+			return locale.weapons[weapon.__splatoon3ink_id].name;
+		}
+
+	};
+
+	// 
 	const nodeToString = node => {
 
 		const startDate = new Date(node.startTime);
@@ -60,7 +75,7 @@
 		return `${dateToString(startDate)}–${dateToString(endDate)}\n` +
 			`${locale.stages[coopStage.id].name} ${locale.bosses[boss.id].name}\n\n` +
 			'メインウェポン 一覧:\n\n' +
-			weapons.map(weapon => `・${locale.weapons[weapon.__splatoon3ink_id].name}`).join('\n');
+			weapons.map(weapon => `・${getWeaponName(weapon)}`).join('\n');
 
 	};
 
