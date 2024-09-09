@@ -80,12 +80,22 @@
 	};
 
 	// 
-	scheduleElement.textContent = nodes
+	const shifts = nodes
 		.sort((nodeA, nodeB) => {
 			const startDateA = new Date(nodeA.startTime);
 			const startDateB = new Date(nodeB.startTime);
 			return startDateA.getTime() - startDateB.getTime();
 		})
-		.map(node => nodeToString(node)).join('\n\n---\n\n');
+		.map(node => nodeToString(node));
+
+	for (const shift of shifts) {
+
+		const shiftElement = document.createElement('div');
+		shiftElement.classList.add('shift');
+		shiftElement.textContent = shift;
+
+		scheduleElement.appendChild(shiftElement);
+
+	}
 
 })();
