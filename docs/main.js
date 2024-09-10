@@ -88,6 +88,8 @@
 		})
 		.map(node => nodeToString(node));
 
+	scheduleElement.innerHTML = '';
+
 	for (const shift of shifts) {
 
 		const shiftElement = document.createElement('div');
