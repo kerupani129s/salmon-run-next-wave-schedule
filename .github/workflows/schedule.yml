@@ -25,8 +25,7 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Get schedule
-        shell: bash
-        run: get-schedule.sh
+        run: ./get-schedule.sh
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
