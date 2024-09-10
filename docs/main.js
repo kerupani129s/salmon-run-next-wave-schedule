@@ -24,7 +24,7 @@
 
 	};
 
-	const nodes = await getCoopGroupingSchedule();
+	const nodes = await getCoopGroupingSchedule().catch(() => null);
 
 	// 
 	const getLocale = async () => {
@@ -36,7 +36,7 @@
 
 	};
 
-	const locale = await getLocale();
+	const locale = await getLocale().catch(() => null);
 
 	// 
 	const dtf = new Intl.DateTimeFormat('ja-JP', {
@@ -80,24 +80,30 @@
 	};
 
 	// 
-	const shifts = nodes
-		.sort((nodeA, nodeB) => {
-			const startDateA = new Date(nodeA.startTime);
-			const startDateB = new Date(nodeB.startTime);
-			return startDateA.getTime() - startDateB.getTime();
-		})
-		.map(node => nodeToString(node));
+	try {
 
-	scheduleElement.innerHTML = '';
+		const shifts = nodes
+			.sort((nodeA, nodeB) => {
+				const startDateA = new Date(nodeA.startTime);
+				const startDateB = new Date(nodeB.startTime);
+				return startDateA.getTime() - startDateB.getTime();
+			})
+			.map(node => nodeToString(node));
 
-	for (const shift of shifts) {
+		scheduleElement.innerHTML = '';
 
-		const shiftElement = document.createElement('div');
-		shiftElement.classList.add('shift');
-		shiftElement.textContent = shift;
+		for (const shift of shifts) {
 
-		scheduleElement.appendChild(shiftElement);
+			const shiftElement = document.createElement('div');
+			shiftElement.classList.add('shift');
+			shiftElement.textContent = shift;
 
+			scheduleElement.appendChild(shiftElement);
+
+		}
+
+	} catch {
+		scheduleElement.innerHTML = 'エラーが発生しました';
 	}
 
 })();
